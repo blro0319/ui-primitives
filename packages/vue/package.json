@@ -29,7 +29,8 @@
     "dev": "vite",
     "build": "vite build && pnpm run build:vue-tsc && pnpm run build:tsc-alias",
     "build:vue-tsc": "vue-tsc --project tsconfig.build.json",
-    "build:tsc-alias": "tsc-alias --project tsconfig.build.json"
+    "build:tsc-alias": "tsc-alias --project tsconfig.build.json",
+    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx,vue}\""
   },
   "peerDependencies": {
     "vue": "^3.0.0"
@@ -41,9 +42,16 @@
     "@ariakit/core": "^0.3.4",
     "@tsconfig/node20": "^20.1.2",
     "@types/node": "^20.8.10",
+    "@typescript-eslint/eslint-plugin": "^6.9.1",
+    "@typescript-eslint/parser": "^6.9.1",
     "@vitejs/plugin-vue": "^4.4.0",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@vue/tsconfig": "^0.4.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint-plugin-vue": "^9.18.1",
+    "prettier": "^3.0.3",
     "tsc-alias": "^1.8.8",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
