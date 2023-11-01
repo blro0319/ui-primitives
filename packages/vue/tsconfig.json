@@ -1,0 +1,39 @@
+{
+  "extends": ["@tsconfig/node20/tsconfig.json", "@vue/tsconfig/tsconfig.json"],
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "types": ["node"],
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "verbatimModuleSyntax": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@blro/ui-primitives-vue": ["src/index.ts"],
+      "#playground/*": ["playground/*"]
+    }
+  },
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue",
+    "playground/**/*",
+    "playground/**/*.vue"
+  ],
+  "exclude": ["dist", "node_modules"]
+}
