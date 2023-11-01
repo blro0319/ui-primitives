@@ -1,0 +1,18 @@
+{
+  "private": true,
+  "name": "@blro/ui-primitives",
+  "version": "0.0.0",
+  "author": "Blro",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blro0319/ui-primitives"
+  },
+  "type": "module",
+  "scripts": {
+    "dev:docs": "pnpm --filter @blro/ui-primitives-docs run dev",
+    "build:docs": "pnpm --filter @blro/ui-primitives-docs run build"
+  }
+}

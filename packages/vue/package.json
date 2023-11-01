@@ -1,0 +1,16 @@
+{
+  "private": true,
+  "name": "@blro/ui-primitives-vue",
+  "version": "0.0.0",
+  "author": "Blro",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blro0319/ui-primitives",
+    "directory": "packages/vue"
+  },
+  "type": "module",
+  "scripts": {}
+}

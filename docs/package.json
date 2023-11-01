@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "name": "@blro/ui-primitives-docs",
+  "version": "0.0.0",
+  "author": "Blro",
+  "description": "",
+  "keywords": [],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blro0319/ui-primitives",
+    "directory": "docs"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-rc.24"
+  }
+}
