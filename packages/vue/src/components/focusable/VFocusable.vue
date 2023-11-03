@@ -247,12 +247,12 @@ const supportsDisabled = computed(() => {
     :style="{ pointerEvent: trulyDisabled ? 'none' : undefined }"
     :aria-disabled="disabled ? true : undefined"
     :data-focus-visible="focusVisible ? '' : undefined"
-    @focus="handleFocus"
+    @focus.capture="handleFocus"
     @blur="handleBlur"
-    @keydown="handleKeyDown"
-    @keypress="preventDefaultWhenDisabled"
-    @mousedown="handleMouseDown"
-    @click="preventDefaultWhenDisabled"
+    @keydown.capture="handleKeyDown"
+    @keypress.capture="preventDefaultWhenDisabled"
+    @mousedown.capture="handleMouseDown"
+    @click.capture="preventDefaultWhenDisabled"
   >
     <slot />
   </VPrimitive>
