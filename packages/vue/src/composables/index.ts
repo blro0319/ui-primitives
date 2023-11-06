@@ -1,2 +1,2 @@
-export * from "./useId";
-export * from "./useKeyboardModality";
+export * from "./use-id";
+export * from "./use-keyboard-modality";
