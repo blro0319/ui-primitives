@@ -1,5 +1,5 @@
 <script lang="ts">
-import { VPrimitive } from "@blro/ui-primitives-vue";
+import { injectionKey, VPrimitive } from "@blro/ui-primitives-vue";
 import { inject, provide, ref, type Ref } from "vue";
 
 export interface VGroupProps {
@@ -19,21 +19,14 @@ export interface VGroupProps {
   asChild?: boolean;
 }
 
-const CONTEXT_KEY = Symbol("VGroup");
-
 export interface VGroupContext {
   labelId: Ref<string | undefined>;
 }
 
-export function provideVGroupContext() {
-  const labelId = ref<string>();
+const KEY = injectionKey<VGroupContext>("VGroup");
 
-  const context: VGroupContext = { labelId };
-  provide(CONTEXT_KEY, context);
-  return context;
-}
 export function injectVGroupContext() {
-  return inject<VGroupContext | null>(CONTEXT_KEY, null);
+  return inject(KEY, null);
 }
 </script>
 
@@ -45,7 +38,8 @@ defineOptions({
 
 defineProps<VGroupProps>();
 
-const { labelId } = provideVGroupContext();
+const labelId = ref<string>();
+provide(KEY, { labelId });
 </script>
 
 <template>
