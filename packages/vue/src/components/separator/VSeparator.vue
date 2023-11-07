@@ -1,4 +1,9 @@
 <script lang="ts">
+/**
+ * @credit Ariakit
+ * @see https://ariakit.org/components/separator
+ */
+
 import { VPrimitive } from "@blro/ui-primitives-vue";
 
 export interface VSeparatorProps {

@@ -1,6 +1,6 @@
 /**
  * @credit Radix Vue
- * @see https://github.com/radix-vue/radix-vue/blob/f9b0bfe0005e575c7dfe9bbcc18fa3c24738fbbd/packages/radix-vue/src/Primitive/Primitive.ts
+ * @see https://www.radix-vue.com/utilities/primitive.html
  */
 
 import { defineComponent, h } from "vue";

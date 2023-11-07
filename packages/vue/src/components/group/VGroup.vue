@@ -1,4 +1,9 @@
 <script lang="ts">
+/**
+ * @credit Ariakit
+ * @see https://ariakit.org/components/group
+ */
+
 import { injectionKey, VPrimitive } from "@blro/ui-primitives-vue";
 import { inject, provide, ref, type Ref } from "vue";
 

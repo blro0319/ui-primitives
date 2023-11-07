@@ -1,4 +1,9 @@
 <script lang="ts">
+/**
+ * @credit Ariakit
+ * @see https://ariakit.org/components/visually-hidden
+ */
+
 import { VPrimitive } from "@blro/ui-primitives-vue";
 import { mergeProps } from "vue";
 

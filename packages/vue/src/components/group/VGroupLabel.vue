@@ -1,4 +1,9 @@
 <script lang="ts">
+/**
+ * @credit Ariakit
+ * @see https://ariakit.org/components/group
+ */
+
 import {
   VPrimitive,
   injectVGroupContext,
