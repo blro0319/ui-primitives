@@ -10,18 +10,35 @@ function click(msg: string) {
   <div>
     <button @click="$router.back()">Back</button>
     <h1>VCommand</h1>
-    <VCommand @click="click('Default')">Default</VCommand>
-    <VCommand as="button" @click="click('Native Button')">
-      Native Button
-    </VCommand>
+    <VCommand as="div" @click="click('Default')">Default</VCommand>
+    <VCommand @click="click('Native Button')">Native Button</VCommand>
     <VCommand as-child>
       <button @click="click('Native Button As Child')">
         Native Button As Child
       </button>
     </VCommand>
-    <VCommand disabled @click="click('Disabled')">Disabled</VCommand>
-    <VCommand disabled accessible-when-disabled @click="click('Disabled')">
-      Accessible When Disabled
+    <VCommand as="div" disabled @click="click('Disabled')">Disabled</VCommand>
+    <VCommand
+      as-child
+      disabled
+      accessible-when-disabled
+      @click="click('Disabled')"
+    >
+      <div>Accessible When Disabled</div>
+    </VCommand>
+    <VCommand
+      as="div"
+      :click-on-enter="false"
+      @click="click('Click On Enter Off')"
+    >
+      Click On Enter Off
+    </VCommand>
+    <VCommand
+      as="div"
+      :click-on-scape="false"
+      @click="click('Click On Scape Off')"
+    >
+      Click On Scape Off
     </VCommand>
     <VCommand :click-on-enter="false" @click="click('Click On Enter Off')">
       Click On Enter Off

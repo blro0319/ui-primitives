@@ -19,7 +19,7 @@ export interface VCommandProps {
   /**
    * @default
    * ```ts
-   * "div"
+   * "button"
    * ```
    */
   as?: string;
@@ -75,8 +75,7 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<VCommandProps>(), {
-  as: "div",
-  asChild: false,
+  as: "button",
   clickOnEnter: true,
   clickOnScape: true,
 });
