@@ -8,25 +8,11 @@ import {
   VPrimitive,
   injectVGroupContext,
   useId,
+  type VPrimitiveProps,
 } from "@blro/ui-primitives-vue";
 import { useAttrs, watch } from "vue";
 
-export interface VGroupLabelProps {
-  /**
-   * @default
-   * ```ts
-   * "div"
-   * ```
-   */
-  as?: string;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  asChild?: boolean;
-}
+export interface VGroupLabelProps extends /* @vue-ignore */ VPrimitiveProps {}
 </script>
 
 <script setup lang="ts">
@@ -55,13 +41,7 @@ watch(
 </script>
 
 <template>
-  <VPrimitive
-    :id="id"
-    aria-hidden="true"
-    v-bind="$attrs"
-    :as="as"
-    :as-child="asChild"
-  >
+  <VPrimitive :id="id" aria-hidden="true" v-bind="$attrs">
     <slot />
   </VPrimitive>
 </template>
