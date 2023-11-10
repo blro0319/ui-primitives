@@ -7,7 +7,7 @@
 import { injectionKey } from "@blro/ui-primitives-vue";
 import { computed, inject, provide, type ComputedRef } from "vue";
 
-export interface VHeadingProps {
+export interface VHeadingLevelProps {
   level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 
@@ -27,7 +27,7 @@ defineOptions({
   name: "VHeadingLevel",
 });
 
-const props = defineProps<VHeadingProps>();
+const props = defineProps<VHeadingLevelProps>();
 
 const inheritContext = useVHeadingLevelContext();
 const computedLevel = computed(() => {
