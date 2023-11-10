@@ -16,25 +16,15 @@ import {
   isFocusable,
 } from "@ariakit/core/utils/focus";
 import { isSafari } from "@ariakit/core/utils/platform";
-import { VPrimitive, useKeyboardModality } from "@blro/ui-primitives-vue";
+import {
+  VPrimitive,
+  useKeyboardModality,
+  type VPrimitiveProps,
+} from "@blro/ui-primitives-vue";
 import { unrefElement, useIntersectionObserver } from "@vueuse/core";
 import { computed, ref, toRefs, useAttrs, watch } from "vue";
 
-export interface VFocusableProps {
-  /**
-   * @default
-   * ```ts
-   * "div"
-   * ```
-   */
-  as?: string;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  asChild?: boolean;
+export interface VFocusableProps extends /* @vue-ignore */ VPrimitiveProps {
   /**
    * @default
    * ```ts
@@ -237,8 +227,6 @@ const supportsDisabled = computed(() => {
 <template>
   <VPrimitive
     v-bind="attrs"
-    :as="as"
-    :as-child="asChild"
     :autofocus="autofocus"
     :disabled="supportsDisabled ? trulyDisabled : undefined"
     :contenteditable="disabled ? undefined : attrs.contenteditable"

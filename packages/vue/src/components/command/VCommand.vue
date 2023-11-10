@@ -11,11 +11,11 @@ import {
   queueBeforeEvent,
 } from "@ariakit/core/utils/events";
 import { isFirefox } from "@ariakit/core/utils/platform";
-import { VFocusable } from "@blro/ui-primitives-vue";
+import { VFocusable, type VFocusableProps } from "@blro/ui-primitives-vue";
 import { unrefElement } from "@vueuse/core";
 import { computed, ref, toRefs } from "vue";
 
-export interface VCommandProps {
+export interface VCommandProps extends /* @vue-ignore */ VFocusableProps {
   /**
    * @default
    * ```ts
@@ -23,13 +23,6 @@ export interface VCommandProps {
    * ```
    */
   as?: string;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  asChild?: boolean;
   /**
    * @default
    * ```ts
@@ -44,27 +37,6 @@ export interface VCommandProps {
    * ```
    */
   clickOnScape?: boolean;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  autofocus?: boolean;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  disabled?: boolean;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  accessibleWhenDisabled?: boolean;
 }
 </script>
 
@@ -178,10 +150,6 @@ function isNativeClick(event: KeyboardEvent) {
 <template>
   <VFocusable
     :as="as"
-    :as-child="asChild"
-    :autofocus="autofocus"
-    :disabled="disabled"
-    :accessible-when-disabled="accessibleWhenDisabled"
     :type="isNativeButton ? 'button' : undefined"
     :data-active="active ? '' : undefined"
     v-bind="$attrs"
