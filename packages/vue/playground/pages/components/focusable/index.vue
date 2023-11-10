@@ -16,6 +16,26 @@ import { VFocusable } from "@blro/ui-primitives-vue";
     <VFocusable as="button" disabled accessible-when-disabled>
       Native Disabled & Accessible &lt;button&gt;
     </VFocusable>
+    <hr />
+    <VFocusable :focusable="false">Default &lt;div&gt;</VFocusable>
+    <VFocusable :focusable="false" as="button">
+      Native Tabbable &lt;button&gt;
+    </VFocusable>
+    <VFocusable :focusable="false" disabled>Disabled &lt;div&gt;</VFocusable>
+    <VFocusable :focusable="false" disabled accessible-when-disabled>
+      Accessible When Disabled &lt;div&gt;
+    </VFocusable>
+    <VFocusable :focusable="false" as="button" disabled>
+      Native Disabled &lt;button&gt;
+    </VFocusable>
+    <VFocusable
+      :focusable="false"
+      as="button"
+      disabled
+      accessible-when-disabled
+    >
+      Native Disabled & Accessible &lt;button&gt;
+    </VFocusable>
   </div>
 </template>
 

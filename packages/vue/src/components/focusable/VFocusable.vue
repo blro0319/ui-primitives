@@ -22,9 +22,17 @@ import {
   type VPrimitiveProps,
 } from "@blro/ui-primitives-vue";
 import { unrefElement, useIntersectionObserver } from "@vueuse/core";
+import { logicAnd } from "@vueuse/math";
 import { computed, ref, toRefs, useAttrs, watch } from "vue";
 
 export interface VFocusableProps extends /* @vue-ignore */ VPrimitiveProps {
+  /**
+   * @default
+   * ```ts
+   * true
+   * ```
+   */
+  focusable?: boolean;
   /**
    * @default
    * ```ts
@@ -72,14 +80,15 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<VFocusableProps>(), {
-  as: "div",
-  asChild: false,
+  focusable: true,
   autofocus: false,
   disabled: false,
   accessibleWhenDisabled: false,
 });
 
-const { autofocus, disabled, accessibleWhenDisabled } = toRefs(props);
+const { focusable, autofocus, disabled, accessibleWhenDisabled } =
+  toRefs(props);
+
 const attrs = useAttrs();
 
 const root = ref<InstanceType<typeof VPrimitive>>();
@@ -88,27 +97,38 @@ const rootElement = computed(() => unrefElement(root.value));
 const isKeyboardModality = useKeyboardModality();
 const focusVisible = ref(false);
 
+const focusableDisabled = computed(() => focusable.value && disabled.value);
 const trulyDisabled = computed(() => {
-  return disabled.value && !accessibleWhenDisabled.value;
+  return focusableDisabled.value && !accessibleWhenDisabled.value;
 });
 // When the focusable element is disabled, it doesn't trigger a blur event so we
 // can't set focusVisible to false there. Instead, we have to do it here by
 // checking the element's disabled attribute.
 watch(trulyDisabled, (trulyDisabled) => {
+  if (!focusable.value) return;
   if (trulyDisabled && focusVisible.value) focusVisible.value = false;
 });
 
 // When an element that has focus becomes hidden, it doesn't trigger a blur
 // event so we can't set focusVisible to false there. We observe the element and
 // check if it's still focusable. Otherwise, we set focusVisible to false.
-useIntersectionObserver(rootElement, () => {
-  if (!rootElement.value) return;
-  if (!isFocusable(rootElement.value)) focusVisible.value = false;
+const observer = useIntersectionObserver(
+  rootElement,
+  () => {
+    if (!focusable.value) return;
+    if (!rootElement.value) return;
+    if (!isFocusable(rootElement.value)) focusVisible.value = false;
+  },
+  { immediate: false }
+);
+watch(logicAnd(focusable, focusVisible), (value) => {
+  if (!value) observer.stop();
+  else observer.resume();
 });
 
 function preventDefaultWhenDisabled(event: Event) {
   if (event.defaultPrevented) return;
-  if (disabled.value) {
+  if (focusableDisabled.value) {
     event.stopPropagation();
     event.preventDefault();
   }
@@ -117,6 +137,7 @@ function preventDefaultWhenDisabled(event: Event) {
 function handleMouseDown(event: MouseEvent) {
   preventDefaultWhenDisabled(event);
   if (event.defaultPrevented) return;
+  if (!focusable.value) return;
   if (!isSafari()) return;
 
   const element = event.currentTarget as HTMLElement | null;
@@ -146,6 +167,7 @@ function handleMouseDown(event: MouseEvent) {
 
 function handleKeyDown(event: KeyboardEvent) {
   if (event.defaultPrevented) return;
+  if (!focusable.value) return;
   if (focusVisible.value) return;
   if (event.metaKey || event.altKey || event.ctrlKey) return;
   if (!isSelfTarget(event)) return;
@@ -154,6 +176,7 @@ function handleKeyDown(event: KeyboardEvent) {
 
 function handleFocus(event: FocusEvent) {
   if (event.defaultPrevented) return;
+  if (!focusable.value) return;
   if (!isSelfTarget(event)) {
     focusVisible.value = false;
     return;
@@ -180,10 +203,13 @@ function handleFocus(event: FocusEvent) {
   }
 }
 function handleBlur(event: FocusEvent) {
-  if (isFocusEventOutside(event)) focusVisible.value = false;
+  if (!focusable.value) return;
+  if (!isFocusEventOutside(event)) return;
+  focusVisible.value = false;
 }
 
 function setFocusVisibleByEvent(event: Event) {
+  if (!focusable.value) return;
   if (event.defaultPrevented) return;
   const element = event.currentTarget as HTMLElement | null;
   if (!element || !hasFocus(element)) return;
@@ -191,6 +217,7 @@ function setFocusVisibleByEvent(event: Event) {
 }
 
 const tabindex = computed(() => {
+  if (!focusable.value) return attrs.tabindex;
   if (trulyDisabled.value) {
     if (nativeTabbable.value && !supportsDisabled.value) {
       return -1;
@@ -227,14 +254,14 @@ const supportsDisabled = computed(() => {
 <template>
   <VPrimitive
     v-bind="attrs"
-    :autofocus="autofocus"
-    :disabled="supportsDisabled ? trulyDisabled : undefined"
-    :contenteditable="disabled ? undefined : attrs.contenteditable"
+    :autofocus="autofocus && focusable"
+    :disabled="supportsDisabled && trulyDisabled ? true : undefined"
+    :contenteditable="focusableDisabled ? undefined : attrs.contenteditable"
     :tabindex="tabindex"
     ref="root"
     :style="{ pointerEvent: trulyDisabled ? 'none' : undefined }"
-    :aria-disabled="disabled ? true : undefined"
-    :data-focus-visible="focusVisible ? '' : undefined"
+    :aria-disabled="focusableDisabled ? true : undefined"
+    :data-focus-visible="focusable && focusVisible ? '' : undefined"
     @focus.capture="handleFocus"
     @blur="handleBlur"
     @keydown.capture="handleKeyDown"
