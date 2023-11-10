@@ -1,5 +1,6 @@
 export * from "./button";
 export * from "./command";
+export * from "./disclosure";
 export * from "./focusable";
 export * from "./group";
 export * from "./heading";
