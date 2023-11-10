@@ -4,9 +4,9 @@
  * @see https://ariakit.org/components/separator
  */
 
-import { VPrimitive } from "@blro/ui-primitives-vue";
+import { VPrimitive, type VPrimitiveProps } from "@blro/ui-primitives-vue";
 
-export interface VSeparatorProps {
+export interface VSeparatorProps extends /* @vue-ignore */ VPrimitiveProps {
   /**
    * @default
    * ```ts
@@ -14,13 +14,6 @@ export interface VSeparatorProps {
    * ```
    */
   as?: string;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  asChild?: boolean;
   /**
    * @default
    * ```ts
@@ -49,7 +42,6 @@ withDefaults(defineProps<VSeparatorProps>(), {
     :aria-orientation="orientation"
     v-bind="$attrs"
     :as="as"
-    :as-child="asChild"
   >
     <slot />
   </VPrimitive>

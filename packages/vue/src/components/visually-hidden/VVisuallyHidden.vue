@@ -4,25 +4,10 @@
  * @see https://ariakit.org/components/visually-hidden
  */
 
-import { VPrimitive } from "@blro/ui-primitives-vue";
-import { mergeProps } from "vue";
+import { VPrimitive, type VPrimitiveProps } from "@blro/ui-primitives-vue";
 
-export interface VVisuallyHiddenProps {
-  /**
-   * @default
-   * ```ts
-   * "div"
-   * ```
-   */
-  as?: string;
-  /**
-   * @default
-   * ```ts
-   * false
-   * ```
-   */
-  asChild?: boolean;
-}
+export interface VVisuallyHiddenProps
+  extends /* @vue-ignore */ VPrimitiveProps {}
 </script>
 
 <script setup lang="ts">
@@ -36,7 +21,7 @@ defineProps<VVisuallyHiddenProps>();
 
 <template>
   <VPrimitive
-    v-bind="mergeProps($attrs, $props)"
+    v-bind="$attrs"
     style="
       overflow: hidden;
       position: absolute;
