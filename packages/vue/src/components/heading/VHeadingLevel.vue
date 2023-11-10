@@ -8,6 +8,12 @@ import { injectionKey } from "@blro/ui-primitives-vue";
 import { computed, inject, provide, type ComputedRef } from "vue";
 
 export interface VHeadingLevelProps {
+  /**
+   * @default
+   * ```ts
+   * // Increase the level by 1 based on the context
+   * ```
+   */
   level?: 1 | 2 | 3 | 4 | 5 | 6;
 }
 

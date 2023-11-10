@@ -30,6 +30,12 @@ import { VHeading, VHeadingLevel } from "@blro/ui-primitives-vue";
     </VHeadingLevel>
     <VHeading as="div">Heading 1 (as div)</VHeading>
     <VHeading as="h2">Heading 2 (as h2)</VHeading>
+    <VHeading as-child>
+      <div>Heading 1 (as child div)</div>
+    </VHeading>
+    <VHeading as-child>
+      <h2>Heading 2 (as child h2)</h2>
+    </VHeading>
     <VHeadingLevel :level="3">
       <VHeading>Heading 3 (set by prop)</VHeading>
     </VHeadingLevel>

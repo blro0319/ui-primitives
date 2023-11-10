@@ -4,19 +4,19 @@
  * @see https://ariakit.org/components/heading
  */
 
-import { VPrimitive } from "@blro/ui-primitives-vue";
-import { computed, toRefs } from "vue";
+import { VPrimitive, type VPrimitiveProps } from "@blro/ui-primitives-vue";
+import { computed, ref, toRefs } from "vue";
 import { useVHeadingLevelContext } from "./VHeadingLevel.vue";
+import { unrefElement } from "@vueuse/core";
 
-export interface VHeadingProps {
-  as?: string;
+export interface VHeadingProps extends /* @vue-ignore */ VPrimitiveProps {
   /**
    * @default
    * ```ts
-   * false
+   * `h${providedLevel ?? 1}`
    * ```
    */
-  asChild?: boolean;
+  as?: string;
 }
 </script>
 
@@ -34,8 +34,13 @@ const { as } = toRefs(props);
 
 const levelContext = useVHeadingLevelContext();
 const level = computed(() => levelContext?.level.value ?? 1);
-const tag = computed(() => as.value ?? `h${level.value}`);
-const isNativeHeading = computed(() => /^h\d$/.test(tag.value));
+
+const root = ref<InstanceType<typeof VPrimitive>>();
+const rootElement = computed(() => unrefElement(root.value));
+const isNativeHeading = computed(() => {
+  if (!rootElement.value) return false;
+  return /^H\d$/.test(rootElement.value.tagName);
+});
 </script>
 
 <template>
@@ -43,8 +48,8 @@ const isNativeHeading = computed(() => /^h\d$/.test(tag.value));
     :role="!isNativeHeading ? 'heading' : undefined"
     :aria-level="!isNativeHeading ? level : undefined"
     v-bind="$attrs"
-    :as="tag"
-    :as-child="asChild"
+    :as="as ?? `h${level}`"
+    ref="root"
   >
     <slot />
   </VPrimitive>
