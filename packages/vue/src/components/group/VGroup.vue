@@ -19,7 +19,7 @@ export interface VGroupContext {
 
 const KEY = injectionKey<VGroupContext>("VGroup");
 
-export function injectVGroupContext() {
+export function useVGroupContext() {
   return inject(KEY, null);
 }
 </script>

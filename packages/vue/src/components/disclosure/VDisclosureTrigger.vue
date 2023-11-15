@@ -15,10 +15,7 @@ defineOptions({
 defineProps<VDisclosureTriggerProps>();
 
 const context = useVDisclosureContext();
-invariant(
-  context,
-  "<VDisclosureTrigger> component must be used within <VDisclosure>"
-);
+invariant(context, "<VDisclosureTrigger> must be used within <VDisclosure>");
 const { expanded, contentId } = context;
 </script>
 

@@ -30,10 +30,7 @@ const props = defineProps<VDisclosureContentProps>();
 const { unmountOnHide } = toRefs(props);
 
 const context = useVDisclosureContext();
-invariant(
-  context,
-  "<VDisclosureContent> component must be used within <VDisclosure>"
-);
+invariant(context, "<VDisclosureContent> must be used within <VDisclosure>");
 const { expanded, contentId } = context;
 
 const attrs = useAttrs();

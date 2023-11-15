@@ -6,8 +6,9 @@
 
 import {
   VPrimitive,
-  injectVGroupContext,
+  invariant,
   useId,
+  useVGroupContext,
   type VPrimitiveProps,
 } from "@blro/ui-primitives-vue";
 import { useAttrs, watch } from "vue";
@@ -22,9 +23,11 @@ defineOptions({
 });
 
 defineProps<VGroupLabelProps>();
-
-const groupContext = injectVGroupContext();
 const attrs = useAttrs();
+
+const groupContext = useVGroupContext();
+invariant(groupContext, "<VGroupLabel> must be used within <VGroup>");
+const { labelId } = groupContext;
 
 const id = useId(() => {
   if (!attrs.id) return null;
@@ -33,8 +36,7 @@ const id = useId(() => {
 watch(
   id,
   (id) => {
-    if (!groupContext) return;
-    groupContext.labelId.value = id;
+    labelId.value = id;
   },
   { immediate: true }
 );
