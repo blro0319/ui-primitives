@@ -1,12 +1,26 @@
-import { toValue, type MaybeRefOrGetter } from "@vueuse/core";
+import {
+  createGlobalState,
+  toValue,
+  type MaybeRefOrGetter,
+} from "@vueuse/core";
 import { computed, onMounted, ref } from "vue";
 
-export function useId(id?: MaybeRefOrGetter<string | undefined | null>) {
+const useIdCounter = createGlobalState(() => {
+  const count = ref(0);
+  return { count };
+});
+
+export function useId(id?: MaybeRefOrGetter<unknown>) {
+  const { count } = useIdCounter();
+
   const generatedId = ref("");
   onMounted(() => {
-    generatedId.value = `blro:${Math.random().toString(36).slice(2, 8)}`;
+    generatedId.value = `:blro:${(++count.value).toString(36)}:`;
   });
+
   return computed(() => {
-    return toValue(id) || generatedId.value;
+    const value = toValue(id);
+    if (typeof value === "string") return value;
+    return generatedId.value;
   });
 }
