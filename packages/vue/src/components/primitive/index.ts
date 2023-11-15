@@ -1,2 +1,2 @@
-export * from "./VPrimitive";
-export * from "./VPrimitiveSlot";
+export * from "./VPrimitive.tsx";
+export * from "./VPrimitiveSlot.tsx";

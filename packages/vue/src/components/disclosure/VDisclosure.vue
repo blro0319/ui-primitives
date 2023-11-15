@@ -10,10 +10,10 @@ import {
   type WritableComputedRef,
 } from "vue";
 
-export interface VDisclosureProps {
+export type VDisclosureProps = {
   open?: boolean;
   defaultOpen?: boolean;
-}
+};
 
 export interface VDisclosureEmits {
   (e: "update:open", value: boolean): void;

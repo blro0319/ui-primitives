@@ -7,7 +7,7 @@
 import { injectionKey } from "@blro/ui-primitives-vue";
 import { computed, inject, provide, type ComputedRef } from "vue";
 
-export interface VHeadingLevelProps {
+export type VHeadingLevelProps = {
   /**
    * @default
    * ```ts
@@ -15,7 +15,7 @@ export interface VHeadingLevelProps {
    * ```
    */
   level?: 1 | 2 | 3 | 4 | 5 | 6;
-}
+};
 
 export interface VHeadingLevelContext {
   level: ComputedRef<number>;

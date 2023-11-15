@@ -1,9 +1,9 @@
 <script lang="ts">
 import { VButton, invariant, type VButtonProps } from "@blro/ui-primitives-vue";
+import { mergeProps } from "vue";
 import { useVDisclosureContext } from "./VDisclosure.vue";
 
-export interface VDisclosureTriggerProps
-  extends /* @vue-ignore */ VButtonProps {}
+export type VDisclosureTriggerProps = VButtonProps;
 </script>
 
 <script setup lang="ts">
@@ -26,7 +26,7 @@ const { expanded, contentId } = context;
   <VButton
     :aria-expanded="expanded"
     :aria-controls="contentId"
-    v-bind="$attrs"
+    v-bind="mergeProps($attrs, $props)"
     @click="expanded = !expanded"
   >
     <slot />

@@ -5,11 +5,11 @@
  */
 
 import { VPrimitive, type VPrimitiveProps } from "@blro/ui-primitives-vue";
+import { unrefElement } from "@vueuse/core";
 import { computed, ref, toRefs } from "vue";
 import { useVHeadingLevelContext } from "./VHeadingLevel.vue";
-import { unrefElement } from "@vueuse/core";
 
-export interface VHeadingProps extends /* @vue-ignore */ VPrimitiveProps {
+export type VHeadingProps = {
   /**
    * @default
    * ```ts
@@ -17,7 +17,7 @@ export interface VHeadingProps extends /* @vue-ignore */ VPrimitiveProps {
    * ```
    */
   as?: string;
-}
+} & Omit<VPrimitiveProps, "as">;
 </script>
 
 <script setup lang="ts">
@@ -49,6 +49,7 @@ const isNativeHeading = computed(() => {
     :aria-level="!isNativeHeading ? level : undefined"
     v-bind="$attrs"
     :as="as ?? `h${level}`"
+    :as-child="asChild"
     ref="root"
   >
     <slot />

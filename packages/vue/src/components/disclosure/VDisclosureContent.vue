@@ -8,10 +8,15 @@ import {
 import { computed, toRefs, useAttrs, watch } from "vue";
 import { useVDisclosureContext } from "./VDisclosure.vue";
 
-export interface VDisclosureContentProps
-  extends /* @vue-ignore */ VPrimitiveProps {
+export type VDisclosureContentProps = VPrimitiveProps & {
+  /**
+   * @default
+   * ```ts
+   * false
+   * ```
+   */
   unmountOnHide?: boolean;
-}
+};
 </script>
 
 <script setup lang="ts">

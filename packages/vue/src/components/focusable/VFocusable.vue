@@ -25,7 +25,7 @@ import { unrefElement, useIntersectionObserver } from "@vueuse/core";
 import { logicAnd } from "@vueuse/math";
 import { computed, ref, toRefs, useAttrs, watch } from "vue";
 
-export interface VFocusableProps extends /* @vue-ignore */ VPrimitiveProps {
+export type VFocusableProps = VPrimitiveProps & {
   /**
    * @default
    * ```ts
@@ -54,7 +54,7 @@ export interface VFocusableProps extends /* @vue-ignore */ VPrimitiveProps {
    * ```
    */
   accessibleWhenDisabled?: boolean;
-}
+};
 
 const ALWAYS_FOCUS_VISIBLE_INPUT_TYPES = [
   "text",
@@ -254,6 +254,8 @@ const supportsDisabled = computed(() => {
 <template>
   <VPrimitive
     v-bind="attrs"
+    :as="as"
+    :as-child="asChild"
     :autofocus="autofocus && focusable"
     :disabled="supportsDisabled && trulyDisabled ? true : undefined"
     :contenteditable="focusableDisabled ? undefined : attrs.contenteditable"

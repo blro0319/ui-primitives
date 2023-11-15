@@ -15,7 +15,7 @@ import { VFocusable, type VFocusableProps } from "@blro/ui-primitives-vue";
 import { unrefElement } from "@vueuse/core";
 import { computed, ref, toRefs } from "vue";
 
-export interface VCommandProps extends /* @vue-ignore */ VFocusableProps {
+export type VCommandProps = {
   /**
    * @default
    * ```ts
@@ -23,21 +23,22 @@ export interface VCommandProps extends /* @vue-ignore */ VFocusableProps {
    * ```
    */
   as?: string;
-  /**
-   * @default
-   * ```ts
-   * true
-   * ```
-   */
-  clickOnEnter?: boolean;
-  /**
-   * @default
-   * ```ts
-   * true
-   * ```
-   */
-  clickOnScape?: boolean;
-}
+} & Omit<VFocusableProps, "as"> & {
+    /**
+     * @default
+     * ```ts
+     * true
+     * ```
+     */
+    clickOnEnter?: boolean;
+    /**
+     * @default
+     * ```ts
+     * true
+     * ```
+     */
+    clickOnScape?: boolean;
+  };
 </script>
 
 <script setup lang="ts">
@@ -149,10 +150,15 @@ function isNativeClick(event: KeyboardEvent) {
 
 <template>
   <VFocusable
-    :as="as"
     :type="isNativeButton ? 'button' : undefined"
     :data-active="active ? '' : undefined"
     v-bind="$attrs"
+    :as="as"
+    :as-child="asChild"
+    :focusable="focusable"
+    :autofocus="autofocus"
+    :disabled="disabled"
+    :accessible-when-disabled="accessibleWhenDisabled"
     ref="root"
     @keydown="handleKeyDown"
     @keyup="handleKeyUp"

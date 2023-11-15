@@ -6,8 +6,7 @@
 
 import { VPrimitive, type VPrimitiveProps } from "@blro/ui-primitives-vue";
 
-export interface VVisuallyHiddenProps
-  extends /* @vue-ignore */ VPrimitiveProps {}
+export type VVisuallyHiddenProps = VPrimitiveProps;
 </script>
 
 <script setup lang="ts">
@@ -22,6 +21,8 @@ defineProps<VVisuallyHiddenProps>();
 <template>
   <VPrimitive
     v-bind="$attrs"
+    :as="as"
+    :as-child="asChild"
     style="
       overflow: hidden;
       position: absolute;

@@ -12,7 +12,7 @@ import {
 } from "@blro/ui-primitives-vue";
 import { useAttrs, watch } from "vue";
 
-export interface VGroupLabelProps extends /* @vue-ignore */ VPrimitiveProps {}
+export type VGroupLabelProps = VPrimitiveProps;
 </script>
 
 <script setup lang="ts">
@@ -41,7 +41,13 @@ watch(
 </script>
 
 <template>
-  <VPrimitive :id="id" aria-hidden="true" v-bind="$attrs">
+  <VPrimitive
+    aria-hidden="true"
+    v-bind="$attrs"
+    :as="as"
+    :as-child="asChild"
+    :id="id"
+  >
     <slot />
   </VPrimitive>
 </template>

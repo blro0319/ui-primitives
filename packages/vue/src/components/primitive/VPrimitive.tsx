@@ -6,7 +6,7 @@
 import { defineComponent, h } from "vue";
 import { VPrimitiveSlot } from "./VPrimitiveSlot";
 
-export interface VPrimitiveProps {
+export type VPrimitiveProps = {
   /**
    * @default
    * ```ts
@@ -21,7 +21,7 @@ export interface VPrimitiveProps {
    * ```
    */
   asChild?: boolean;
-}
+};
 
 export const VPrimitive = defineComponent({
   name: "VPrimitive",

@@ -6,7 +6,7 @@
 
 import { VPrimitive, type VPrimitiveProps } from "@blro/ui-primitives-vue";
 
-export interface VSeparatorProps extends /* @vue-ignore */ VPrimitiveProps {
+export type VSeparatorProps = {
   /**
    * @default
    * ```ts
@@ -14,14 +14,15 @@ export interface VSeparatorProps extends /* @vue-ignore */ VPrimitiveProps {
    * ```
    */
   as?: string;
-  /**
-   * @default
-   * ```ts
-   * "horizontal"
-   * ```
-   */
-  orientation?: "horizontal" | "vertical";
-}
+} & Omit<VPrimitiveProps, "as"> & {
+    /**
+     * @default
+     * ```ts
+     * "horizontal"
+     * ```
+     */
+    orientation?: "horizontal" | "vertical";
+  };
 </script>
 
 <script setup lang="ts">
@@ -42,6 +43,7 @@ withDefaults(defineProps<VSeparatorProps>(), {
     :aria-orientation="orientation"
     v-bind="$attrs"
     :as="as"
+    :as-child="asChild"
   >
     <slot />
   </VPrimitive>

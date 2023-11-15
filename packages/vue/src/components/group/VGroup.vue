@@ -11,7 +11,7 @@ import {
 } from "@blro/ui-primitives-vue";
 import { inject, provide, ref, type Ref } from "vue";
 
-export interface VGroupProps extends /* @vue-ignore */ VPrimitiveProps {}
+export type VGroupProps = VPrimitiveProps;
 
 export interface VGroupContext {
   labelId: Ref<string | undefined>;
@@ -41,6 +41,8 @@ provide(KEY, { labelId });
     role="group"
     :aria-labelledby="labelId ? labelId : undefined"
     v-bind="$attrs"
+    :as="as"
+    :as-child="asChild"
   >
     <slot />
   </VPrimitive>

@@ -7,9 +7,9 @@
 import { isButton } from "@ariakit/core/utils/dom";
 import { VCommand, type VCommandProps } from "@blro/ui-primitives-vue";
 import { unrefElement } from "@vueuse/core";
-import { computed, ref } from "vue";
+import { computed, mergeProps, ref } from "vue";
 
-export interface VButtonProps extends /* @vue-ignore */ VCommandProps {}
+export type VButtonProps = VCommandProps;
 </script>
 
 <script setup lang="ts">
@@ -33,7 +33,7 @@ const role = computed(() => {
 </script>
 
 <template>
-  <VCommand :role="role" v-bind="$attrs" ref="root">
+  <VCommand :role="role" v-bind="mergeProps($attrs, $props)" ref="root">
     <slot />
   </VCommand>
 </template>
