@@ -2,10 +2,12 @@
 import {
   VPrimitive,
   invariant,
+  omit,
   useId,
   type VPrimitiveProps,
 } from "@blro/ui-primitives-vue";
-import { computed, toRefs, useAttrs, watch } from "vue";
+import { useCurrentElement, watchImmediate } from "@vueuse/core";
+import { computed, mergeProps, toRefs, useAttrs } from "vue";
 import { useVDisclosureContext } from "./VDisclosure.vue";
 
 export type VDisclosureContentProps = VPrimitiveProps & {
@@ -31,30 +33,30 @@ const { unmountOnHide } = toRefs(props);
 
 const context = useVDisclosureContext();
 invariant(context, "<VDisclosureContent> must be used within <VDisclosure>");
-const { expanded, contentId } = context;
+const { open, contentElement } = context;
 
 const attrs = useAttrs();
 const id = useId(attrs.id as string | null | undefined);
+const selfElement = useCurrentElement<HTMLElement>();
 
 const willRender = computed(() => {
-  return !unmountOnHide.value || expanded.value;
+  return !unmountOnHide.value || open.value;
 });
 
-watch(
-  [willRender, id],
-  ([willRender, id]) => {
-    if (!willRender) contentId.value = undefined;
-    else contentId.value = id;
-  },
-  { immediate: true }
-);
+watchImmediate(willRender, (willRender) => {
+  if (!willRender) contentElement.value = null;
+  else contentElement.value = selfElement.value;
+});
+watchImmediate([selfElement, id], () => {
+  if (willRender.value && id.value) contentElement.value = selfElement.value;
+});
 </script>
 
 <template>
   <VPrimitive
-    v-if="!unmountOnHide || expanded"
-    v-show="expanded"
-    v-bind="$attrs"
+    v-if="willRender"
+    v-show="open"
+    v-bind="mergeProps($attrs, omit(props, ['unmountOnHide']))"
     :id="id"
   >
     <slot />

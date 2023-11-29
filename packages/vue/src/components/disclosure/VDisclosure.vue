@@ -1,33 +1,76 @@
 <script lang="ts">
-import { injectionKey } from "@blro/ui-primitives-vue";
 import {
-  computed,
-  inject,
-  provide,
-  ref,
-  toRefs,
-  type Ref,
-  type WritableComputedRef,
-} from "vue";
+  injectionKey,
+  usePassiveVModel,
+  type MaybeRefs,
+  type Nullish,
+  type Prettify,
+} from "@blro/ui-primitives-vue";
+import { inject, provide, ref, toValue, type ToRefs, toRefs } from "vue";
 
 export type VDisclosureProps = {
+  /**
+   * @default
+   * ```ts
+   * false
+   * ```
+   */
   open?: boolean;
+  /**
+   * @default
+   * ```ts
+   * false
+   * ```
+   */
   defaultOpen?: boolean;
 };
 
-export interface VDisclosureEmits {
-  (e: "update:open", value: boolean): void;
+export type VDisclosureEmits = {
+  (e: "update:open", value: boolean): boolean;
+};
+
+export type VDisclosureState = {
+  open: boolean;
+  defaultOpen: boolean;
+  triggerElement: HTMLElement | Nullish;
+  contentElement: HTMLElement | Nullish;
+};
+export type VDisclosureContext = Prettify<
+  ToRefs<VDisclosureState> & {
+    show(): void;
+    hide(): void;
+    toggle(): void;
+  }
+>;
+
+const SCOPE = injectionKey<VDisclosureContext>("VDisclosure");
+
+export function createVDisclosureContext(
+  state: Partial<MaybeRefs<VDisclosureState>> = {}
+): VDisclosureContext {
+  const open = ref(state.open ?? toValue(state.defaultOpen) ?? false);
+  const defaultOpen = ref(state.defaultOpen ?? false);
+  const triggerElement = ref(state.triggerElement ?? null);
+  const contentElement = ref(state.contentElement ?? null);
+
+  return {
+    open,
+    defaultOpen,
+    triggerElement,
+    contentElement,
+    show() {
+      open.value = true;
+    },
+    hide() {
+      open.value = false;
+    },
+    toggle() {
+      open.value = !open.value;
+    },
+  };
 }
-
-export interface VDisclosureContext {
-  expanded: WritableComputedRef<boolean>;
-  contentId: Ref<string | undefined>;
-}
-
-const KEY = injectionKey<VDisclosureContext>("VDisclosure");
-
 export function useVDisclosureContext() {
-  return inject(KEY, null);
+  return inject(SCOPE, null);
 }
 </script>
 
@@ -39,27 +82,18 @@ defineOptions({
 
 const props = withDefaults(defineProps<VDisclosureProps>(), {
   open: undefined,
+  defaultOpen: false,
 });
 const emit = defineEmits<VDisclosureEmits>();
 
-const { open, defaultOpen } = toRefs(props);
-const internalOpen = ref(defaultOpen.value);
-
-const expanded = computed({
-  get() {
-    if (open.value !== undefined) return open.value;
-    return internalOpen.value;
-  },
-  set(value) {
-    if (open.value !== undefined) return emit("update:open", value);
-    internalOpen.value = value;
-  },
+const context = createVDisclosureContext({
+  ...toRefs(props),
+  open: usePassiveVModel(props, "open", emit, props.defaultOpen),
 });
 
-provide(KEY, {
-  expanded,
-  contentId: ref<string>(),
-});
+provide(SCOPE, context);
+
+defineExpose(context);
 </script>
 
 <template>
