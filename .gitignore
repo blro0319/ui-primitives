@@ -1,3 +1,4 @@
+dist
 node_modules
 
 # Nuxt
@@ -10,6 +11,7 @@ docs/.vitepress/cache
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 *.suo
 *.ntvs*
