@@ -25,7 +25,7 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --project tsconfig.build.json",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

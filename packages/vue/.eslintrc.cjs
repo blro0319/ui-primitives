@@ -48,7 +48,7 @@ module.exports = {
     "consistent-this": "error",
     "curly": ["warn", "multi-line", "consistent"],
     "default-case-last": "warn",
-    "default-param-last": "error",
+    "default-param-last": "off", // Replaced by @typescript-eslint/default-param-last
     "dot-notation": "warn",
     "eqeqeq": "warn",
     "grouped-accessor-pairs": ["warn", "getBeforeSet"],
@@ -95,7 +95,7 @@ module.exports = {
     "no-sequences": "warn",
     "no-undefined": "error",
     "no-unneeded-ternary": "warn",
-    "no-unused-expressions": "warn",
+    "no-unused-expressions": "off", // Replaced by @typescript-eslint/no-unused-expressions
     "no-unused-labels": "off", // no-labels
     "no-useless-call": "warn",
     "no-useless-catch": "warn",
@@ -118,7 +118,7 @@ module.exports = {
     "prefer-rest-params": "warn",
     "prefer-template": "warn",
     "require-await": "warn",
-    "sort-imports": ["warn", { ignoreCase: true, ignoreDeclarationSort: true }],
+    "sort-imports": ["warn", { ignoreDeclarationSort: true }],
     "strict": "error",
     // ---------------------------------------------------------------------- //
     // Import Plugin Rules                                                    //
@@ -217,10 +217,10 @@ module.exports = {
     "@stylistic/type-named-tuple-spacing": "warn",
     "@stylistic/wrap-iife": "warn",
     "@stylistic/yield-star-spacing": "warn",
-    // TypeScript
-    "default-param-last": "off", // Replaced by @typescript-eslint/default-param-last
+    // ---------------------------------------------------------------------- //
+    // TypeScript        Rules                                                //
+    // ---------------------------------------------------------------------- //
     "no-return-await": "off", // Replaced by @typescript-eslint/return-await
-    "no-unused-expressions": "off", // Replaced by @typescript-eslint/no-unused-expressions
     "@typescript-eslint/adjacent-overload-signatures": "warn",
     "@typescript-eslint/array-type": "warn",
     "@typescript-eslint/ban-ts-comment": [
@@ -427,7 +427,7 @@ module.exports = {
     "vue/no-setup-props-reactivity-loss": "warn",
     "vue/no-this-in-before-route-enter": "error",
     "vue/no-unused-emit-declarations": "warn",
-    "vue/no-unused-properties": "warn",
+    "vue/no-unused-properties": "off",
     "vue/no-unused-refs": "warn",
     "vue/no-use-v-else-with-v-for": "error",
     "vue/no-useless-mustaches": "warn",

@@ -4,6 +4,13 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [vue()],
+  resolve: {
+    alias: {
+      "~": resolve(__dirname, "src"),
+      "#examples": resolve(__dirname, "examples"),
+      "#playground": resolve(__dirname, "playground"),
+    },
+  },
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
