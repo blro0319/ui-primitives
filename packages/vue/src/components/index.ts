@@ -1,2 +1,2 @@
-export { default as VPrimitive } from "./v-primitive/VPrimitive";
-export * from "./v-primitive/VPrimitive";
+export { default as VPrimitive } from "./primitive/VPrimitive";
+export * from "./primitive/VPrimitive";
