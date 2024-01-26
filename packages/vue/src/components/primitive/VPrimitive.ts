@@ -17,14 +17,14 @@ export type VPrimitiveProps = {
    * "div"
    * ```
    */
-  as?: AsTag;
+  as?: AsTag | Component;
   /**
    * @default
    * ```ts
    * false
    * ```
    */
-  asChild?: boolean | Component;
+  asChild?: boolean;
 };
 
 export default defineComponent<VPrimitiveProps>((props, { attrs, slots }) => {

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import StyledPrimitive from "./StyledPrimitive.vue";
 import { VPrimitive } from "~/components";
 
 defineOptions({
@@ -13,6 +14,9 @@ defineOptions({
     </VPrimitive>
     <VPrimitive as="button">
       Button
+    </VPrimitive>
+    <VPrimitive :as="StyledPrimitive" style="color: white">
+      Component
     </VPrimitive>
   </div>
 </template>
