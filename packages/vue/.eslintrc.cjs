@@ -192,7 +192,10 @@ module.exports = {
     "@stylistic/object-curly-newline": "warn",
     "@stylistic/object-curly-spacing": ["warn", "always"],
     "@stylistic/one-var-declaration-per-line": "warn",
-    "@stylistic/operator-linebreak": ["warn", "before"],
+    "@stylistic/operator-linebreak": [
+      "warn", "after",
+      { overrides: { "=": "none", "?": "before", ":": "before" } },
+    ],
     "@stylistic/padded-blocks": ["warn", "never"],
     "@stylistic/quote-props": ["warn", "consistent-as-needed"],
     "@stylistic/quotes": ["warn", "double", { avoidEscape: true }],
