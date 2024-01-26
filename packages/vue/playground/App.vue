@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import VPrimitiveAsChildExamples from "#examples/v-primitive/AsChildExamples.vue";
-import VPrimitiveAsExamples from "#examples/v-primitive/AsExamples.vue";
+import VPrimitiveAsChildExamples from "#examples/primitive/AsChildExamples.vue";
+import VPrimitiveAsExamples from "#examples/primitive/AsExamples.vue";
 </script>
 
 <template>
