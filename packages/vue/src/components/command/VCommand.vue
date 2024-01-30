@@ -72,7 +72,7 @@ const props = withDefaults(defineProps<VCommandProps>(), {
   clickOnEnter: true,
   clickOnSpace: true,
 });
-defineEmits<VCommandEmits>();
+const emit = defineEmits<VCommandEmits>();
 
 const { disabled, clickOnEnter, clickOnSpace } = toRefs(props);
 const active = ref(false);
@@ -186,7 +186,7 @@ function handleKeyUp(event: KeyboardEvent) {
       focusable,
       accessibleWhenDisabled,
     }"
-    @focus-visible="$props.onFocusVisible"
+    @focus-visible="emit('focusVisible', $event)"
     @keydown="handleKeyDown"
     @keyup="handleKeyUp"
   >
