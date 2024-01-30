@@ -1,9 +1,9 @@
 import {
   type Component,
   Fragment,
+  type PropType,
   type VNode,
-  cloneVNode,
-  defineComponent, h, mergeProps,
+  cloneVNode, defineComponent, h, mergeProps,
 } from "vue";
 
 export type AsTag =
@@ -64,7 +64,7 @@ export default defineComponent<VPrimitiveProps>((props, { attrs, slots }) => {
   inheritAttrs: false,
   props: {
     as: {
-      type: String,
+      type: [String, Object] as PropType<AsTag | Component>,
       required: false,
       default: "div",
     },
