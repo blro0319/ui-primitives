@@ -1,4 +1,7 @@
 <script setup lang="ts">
+// Command
+import CommandAsExamples from "#examples/command/AsExamples.vue";
+import CommandClickOnExamples from "#examples/command/ClickOnExamples.vue";
 // Focusable
 import FocusableDisabledExamples from "#examples/focusable/DisabledExamples.vue";
 import FocusableFocusableExamples from "#examples/focusable/FocusableExamples.vue";
@@ -11,6 +14,13 @@ import PrimitiveAsExamples from "#examples/primitive/AsExamples.vue";
 <template>
   <main>
     <h1>Blro UI Primitive Playground</h1>
+    <section>
+      <h2>VCommand</h2>
+      <h3>As Examples</h3>
+      <CommandAsExamples />
+      <h3>Click On ... Examples</h3>
+      <CommandClickOnExamples />
+    </section>
     <section>
       <h2>VFocusable</h2>
       <h3>Focusable Examples</h3>

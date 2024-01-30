@@ -7,3 +7,7 @@ export function isApple() {
 export function isSafari() {
   return isBrowser() && isApple() && /apple/i.test(navigator.vendor);
 }
+
+export function isFirefox() {
+  return isBrowser() && /firefox\//i.test(navigator.userAgent);
+}

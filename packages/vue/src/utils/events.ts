@@ -31,6 +31,19 @@ export function isFocusEventOutside(
 }
 
 /**
+ * Creates and dispatches a click event.
+ *
+ * @example
+ * ```ts
+ * fireClickEvent(document.getElementById("id"));
+ * ```
+ */
+export function fireClickEvent(element: Element, eventInit?: PointerEventInit) {
+  const event = new MouseEvent("click", eventInit);
+  return element.dispatchEvent(event);
+}
+
+/**
  * Runs a callback on the next animation frame, but before a certain event.
  */
 export function queueBeforeEvent(

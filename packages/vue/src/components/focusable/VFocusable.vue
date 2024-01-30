@@ -145,11 +145,10 @@ const primitive = ref<ComponentPublicInstance>();
 const element = computed(() => unrefElement(primitive.value));
 
 const disabledByAttrs = computed(() => {
-  return focusable.value && (
-    disabled.value ||
-    attrs["aria-disabled"] === true ||
-    attrs["aria-disabled"] === "true"
-  );
+  return focusable.value && disabledFromProps({
+    "disabled": disabled.value,
+    "aria-disabled": attrs["aria-disabled"],
+  });
 });
 const trulyDisabled = computed(() => {
   return disabledByAttrs.value && !accessibleWhenDisabled.value;

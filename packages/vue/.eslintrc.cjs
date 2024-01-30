@@ -61,7 +61,7 @@ module.exports = {
     "no-caller": "error",
     "no-case-declarations": "warn",
     "no-console": "warn",
-    "no-empty-function": "warn",
+    "no-empty-function": "off", // Replaced by @typescript-eslint/no-empty-function
     "no-empty-static-block": "warn",
     "no-eval": "warn",
     "no-extend-native": "error",
@@ -93,7 +93,6 @@ module.exports = {
     "no-return-assign": "warn",
     "no-script-url": "warn",
     "no-sequences": "warn",
-    "no-undefined": "error",
     "no-unneeded-ternary": "warn",
     "no-unused-expressions": "off", // Replaced by @typescript-eslint/no-unused-expressions
     "no-unused-labels": "off", // no-labels
@@ -221,7 +220,7 @@ module.exports = {
     "@stylistic/wrap-iife": "warn",
     "@stylistic/yield-star-spacing": "warn",
     // ---------------------------------------------------------------------- //
-    // TypeScript        Rules                                                //
+    // TypeScript Rules                                                       //
     // ---------------------------------------------------------------------- //
     "no-return-await": "off", // Replaced by @typescript-eslint/return-await
     "@typescript-eslint/adjacent-overload-signatures": "warn",
@@ -281,13 +280,14 @@ module.exports = {
     "@typescript-eslint/no-array-constructor": "warn",
     "@typescript-eslint/no-base-to-string": "warn",
     "@typescript-eslint/no-confusing-void-expression": "warn",
-    "@typescript-eslint/no-empty-function": "warn",
+    "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/no-empty-interface": ["warn", { allowSingleExtends: true }],
-    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-import-type-side-effects": "warn",
     "@typescript-eslint/no-inferrable-types": "warn",
     "@typescript-eslint/no-namespace": "warn",
     "@typescript-eslint/no-non-null-assertion": "warn",
+    "@typescript-eslint/no-redundant-type-constituents": "off",
     "@typescript-eslint/no-unnecessary-boolean-literal-compare": [
       "warn",
       {
@@ -299,12 +299,13 @@ module.exports = {
     "@typescript-eslint/no-unused-expressions": "warn",
     "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
     "@typescript-eslint/non-nullable-type-assertion-style": "warn",
     "@typescript-eslint/prefer-as-const": "warn",
     "@typescript-eslint/prefer-for-of": "warn",
     "@typescript-eslint/prefer-function-type": "warn",
     "@typescript-eslint/prefer-includes": "warn",
-    "@typescript-eslint/prefer-nullish-coalescing": "warn",
+    "@typescript-eslint/prefer-nullish-coalescing": "off", // TypeError: Cannot read properties of undefined (reading 'some')
     "@typescript-eslint/prefer-optional-chain": "warn",
     "@typescript-eslint/prefer-promise-reject-errors": "warn",
     "@typescript-eslint/prefer-reduce-type-parameter": "warn",
