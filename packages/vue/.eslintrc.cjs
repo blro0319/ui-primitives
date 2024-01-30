@@ -169,6 +169,7 @@ module.exports = {
         ignoreStrings: true,
         ignoreTemplateLiterals: true,
         ignoreRegExpLiterals: true,
+        ignorePattern: "d=\".+?\"",
       },
     ],
     "@stylistic/max-statements-per-line": "warn",

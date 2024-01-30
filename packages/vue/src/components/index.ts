@@ -9,3 +9,6 @@ export * from "./focusable/VFocusable.vue";
 
 export { default as VPrimitive } from "./primitive/VPrimitive";
 export * from "./primitive/VPrimitive";
+
+export { default as VVisuallyHidden } from "./visually-hidden/VVisuallyHidden.vue";
+export * from "./visually-hidden/VVisuallyHidden.vue";

@@ -11,6 +11,8 @@ import FocusableFocusVisibleExamples from "#examples/focusable/FocusVisibleExamp
 // Primitive
 import PrimitiveAsChildExamples from "#examples/primitive/AsChildExamples.vue";
 import PrimitiveAsExamples from "#examples/primitive/AsExamples.vue";
+// VisuallyHidden
+import VisuallyHiddenBasicExamples from "#examples/visually-hidden/BasicExamples.vue";
 </script>
 
 <template>
@@ -43,6 +45,11 @@ import PrimitiveAsExamples from "#examples/primitive/AsExamples.vue";
       <PrimitiveAsExamples />
       <h3>AsChild Examples</h3>
       <PrimitiveAsChildExamples />
+    </section>
+    <section>
+      <h2>VVisuallyHidden</h2>
+      <h3>Basic Examples</h3>
+      <VisuallyHiddenBasicExamples />
     </section>
   </main>
 </template>
