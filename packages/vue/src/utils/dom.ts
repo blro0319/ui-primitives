@@ -58,7 +58,7 @@ export function isFrame(element: Element): element is HTMLIFrameElement {
  * isButton(document.querySelector("div[role='button']")); // false
  */
 export function isButton(element: { tagName: string; type?: string }) {
-  const tagName = element.tagName.toUpperCase();
+  const tagName = element.tagName.toLowerCase();
   if (tagName === "button") return true;
   if (tagName === "input" && element.type) {
     return INPUT_BUTTON_TYPES.includes(element.type);
