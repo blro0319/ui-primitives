@@ -1,3 +1,6 @@
+export { default as VButton } from "./button/VButton.vue";
+export * from "./button/VButton.vue";
+
 export { default as VCommand } from "./command/VCommand.vue";
 export * from "./command/VCommand.vue";
 

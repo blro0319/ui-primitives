@@ -1,4 +1,6 @@
 <script setup lang="ts">
+// Button
+import ButtonAsExamples from "#examples/button/AsExamples.vue";
 // Command
 import CommandAsExamples from "#examples/command/AsExamples.vue";
 import CommandClickOnExamples from "#examples/command/ClickOnExamples.vue";
@@ -14,6 +16,11 @@ import PrimitiveAsExamples from "#examples/primitive/AsExamples.vue";
 <template>
   <main>
     <h1>Blro UI Primitive Playground</h1>
+    <section>
+      <h2>VButton</h2>
+      <h3>As Examples</h3>
+      <ButtonAsExamples />
+    </section>
     <section>
       <h2>VCommand</h2>
       <h3>As Examples</h3>
