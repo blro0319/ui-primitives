@@ -7,7 +7,21 @@ export function isSelfTarget(event: Pick<Event, "target" | "currentTarget">) {
   return event.target === event.currentTarget;
 }
 
-export function focusEventOutside(
+/**
+ * Checks whether the focus/blur event is happening from/to outside of the
+ * container element.
+ *
+ * @example
+ * ```ts
+ * const element = document.getElementById("id");
+ * element.addEventListener("blur", (event) => {
+ *   if (isFocusEventOutside(event)) {
+ *     // ...
+ *   }
+ * });
+ * ```
+ */
+export function isFocusEventOutside(
   event: Pick<FocusEvent, "currentTarget" | "relatedTarget">,
   container?: Element | null,
 ) {

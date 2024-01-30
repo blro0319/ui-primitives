@@ -12,7 +12,17 @@ import {
 } from "vue";
 import { VPrimitive, type VPrimitiveProps } from "~/components";
 import { useIsKeyboardModality } from "~/composables";
-import { focusEventOutside, focusIfNeeded, hasFocus, isButton, isFocusable, isSafari, isSelfTarget, queueBeforeEvent } from "~/utils";
+import {
+  disabledFromProps,
+  focusIfNeeded,
+  hasFocus,
+  isButton,
+  isFocusEventOutside,
+  isFocusable,
+  isSafari,
+  isSelfTarget,
+  queueBeforeEvent,
+} from "~/utils";
 
 export type VFocusableProps = VPrimitiveProps & {
   /**
@@ -282,7 +292,7 @@ function handleFocusCapture(event: FocusEvent) {
 function handleBlur(event: FocusEvent) {
   if (typeof attrs.onBlur === "function") attrs.onBlur(event);
   if (!focusable.value) return;
-  if (!focusEventOutside(event)) return;
+  if (!isFocusEventOutside(event)) return;
   focusVisible.value = false;
 }
 
