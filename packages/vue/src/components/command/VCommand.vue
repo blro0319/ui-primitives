@@ -66,6 +66,7 @@ defineOptions({
 });
 
 const props = withDefaults(defineProps<VCommandProps>(), {
+  asChild: undefined,
   disabled: undefined,
   focusable: undefined,
   accessibleWhenDisabled: undefined,

@@ -120,7 +120,7 @@ defineOptions({
 
 const props = withDefaults(defineProps<VFocusableProps>(), {
   as: "div",
-  asChild: false,
+  asChild: undefined,
   disabled: false,
   focusable: true,
   accessibleWhenDisabled: false,
