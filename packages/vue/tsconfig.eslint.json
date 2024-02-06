@@ -10,7 +10,9 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "vite.config.ts",
-    "vite-end.d.ts"
+    "vite-end.d.ts",
+    "vite.config.*",
+    "vitest.config.*",
+    "playwright.config.*"
   ]
 }

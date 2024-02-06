@@ -1,3 +1,5 @@
+/// <reference types="vitest" />
+
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
@@ -9,6 +11,20 @@ export default defineConfig({
       "~": resolve(__dirname, "src"),
       "#examples": resolve(__dirname, "examples"),
       "#playground": resolve(__dirname, "playground"),
+    },
+  },
+  test: {
+    environment: "jsdom",
+    globals: true,
+    exclude: ["**/node_modules/**"],
+    include: ["**/*.test.{js,ts}"],
+    coverage: {
+      provider: "v8",
+    },
+    browser: {
+      enabled: true,
+      name: "chrome",
+      provider: "playwright",
     },
   },
   build: {

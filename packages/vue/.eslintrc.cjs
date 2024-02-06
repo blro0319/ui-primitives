@@ -476,5 +476,17 @@ module.exports = {
         "valid-typeof": "off", // ts(2367)
       },
     },
+    {
+      files: [
+        "**/components/*/**/*.{js,jsx,ts,tsx,vue}",
+        "**/layouts/**/*.{js,jsx,ts,tsx,vue}",
+        "**/pages/**/*.{js,jsx,ts,tsx,vue}",
+        "**/app.{js,jsx,ts,tsx,vue}",
+        "**/error.{js,jsx,ts,tsx,vue}",
+      ],
+      rules: {
+        "vue/multi-word-component-names": "off",
+      },
+    },
   ],
 };

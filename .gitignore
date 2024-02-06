@@ -1,6 +1,9 @@
 dist
 node_modules
 
+# Testing
+test-results
+
 # Nuxt
 .nuxt
 

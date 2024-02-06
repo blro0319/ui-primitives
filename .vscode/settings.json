@@ -1,5 +1,9 @@
 {
   "cSpell.words": [
+    // Libraries
+    "guidepup",
+    // Testing
+    "testid",
     // ESLint
     "nonconstructor",
     "nonoctal",
@@ -7,8 +11,9 @@
     "iife",
     "uncategorized",
     "ruleset",
-    // Aria attributes
+    // HTML
     "activedescendant",
+    "contenteditable",
     // Others
     "trackpad",
   ],
