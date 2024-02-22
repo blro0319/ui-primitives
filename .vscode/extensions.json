@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "streetsidesoftware.code-spell-checker",
+    "vitest.explorer",
     "vue.volar",
-    "zixuanchen.vitest-explorer",
   ],
 }
