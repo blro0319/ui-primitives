@@ -1,11 +1,12 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("Primitive", () => {
+  test.describe.configure({ timeout: 30 * 1000 });
+  test.beforeEach(async ({ page }) => {
+    await page.goto("http://localhost:5173/primitive");
+  });
+
   test("as prop", async ({ page }) => {
-    test.setTimeout(30 * 1000);
-
-    await page.goto("/primitive");
-
     await expect(page.getByTestId("as:div").and(page.locator("div")))
       .toBeAttached();
 
@@ -18,10 +19,6 @@ test.describe("Primitive", () => {
   });
 
   test("as-child prop", async ({ page }) => {
-    test.setTimeout(30 * 1000);
-
-    await page.goto("/primitive");
-
     await expect(page.getByTestId("as-child:button").and(page.locator("button")))
       .toBeAttached();
 

@@ -6,12 +6,6 @@ export default defineConfig({
   workers: "80%",
   reporter: "list",
   reportSlowTests: null,
-  webServer: {
-    command: "nr dev",
-    reuseExistingServer: true,
-    stdout: "ignore",
-    port: 5173,
-  },
   use: {
     screenshot: "only-on-failure",
     trace: "on-first-retry",
