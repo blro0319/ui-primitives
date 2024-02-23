@@ -1,7 +1,11 @@
 import { isBrowser } from "~/utils";
 
 export function isApple() {
-  return isBrowser() && /mac|iphone|ipad|ipod/i.test(navigator.platform);
+  if (!isBrowser()) return false;
+  if (/mac|iphone|ipad|ipod/i.test(navigator.platform)) return true;
+  // If run tests on Windows, we need to check the vendor
+  if (/apple/i.test(navigator.vendor)) return true;
+  return false;
 }
 
 export function isSafari() {
