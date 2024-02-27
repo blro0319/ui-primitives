@@ -153,7 +153,7 @@ module.exports = {
     "@stylistic/eol-last": "warn",
     "@stylistic/function-call-argument-newline": ["warn", "consistent"],
     "@stylistic/function-call-spacing": "warn",
-    "@stylistic/function-paren-newline": "warn",
+    "@stylistic/function-paren-newline": ["warn", "multiline-arguments"],
     "@stylistic/generator-star-spacing": "warn",
     "@stylistic/implicit-arrow-linebreak": "warn",
     "@stylistic/indent": ["warn", 2],
