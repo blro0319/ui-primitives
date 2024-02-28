@@ -1,6 +1,26 @@
 import { createGlobalState, useEventListener } from "@vueuse/core";
-import { computed, ref } from "vue";
+import { computed, onMounted, ref, toValue, useAttrs, type MaybeRefOrGetter } from "vue";
 import type { AnyFunction } from "~/types";
+
+export function useId(id?: MaybeRefOrGetter<string | null | undefined>) {
+  const argId = computed(() => toValue(id));
+  const rndId = ref("");
+
+  onMounted(() => {
+    rndId.value = Math.random()
+      .toString(36)
+      .slice(2, 6);
+  });
+
+  return computed(() => {
+    return argId.value || rndId.value;
+  });
+}
+
+export function useIdWithAttrs() {
+  const attrs = useAttrs();
+  return useId(() => attrs.id as string | undefined);
+}
 
 export const useIsKeyboardModality = createGlobalState(() => {
   const isKeyboardModality = ref(false);
