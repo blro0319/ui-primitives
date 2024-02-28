@@ -17,8 +17,9 @@
     // Others
     "trackpad",
   ],
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-  },
+  "editor.codeActionsOnSave": [
+    "source.organizeImports",
+    "source.fixAll.eslint",
+  ],
   "editor.formatOnSave": false,
 }

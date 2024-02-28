@@ -117,24 +117,7 @@ module.exports = {
     "prefer-rest-params": "warn",
     "prefer-template": "warn",
     "require-await": "warn",
-    "sort-imports": ["warn", { ignoreDeclarationSort: true }],
     "strict": "error",
-    // ---------------------------------------------------------------------- //
-    // Import Plugin Rules                                                    //
-    // ---------------------------------------------------------------------- //
-    "import/export": "off",
-    "import/order": [
-      "warn",
-      {
-        "groups": [
-          ["builtin", "external", "internal"],
-          ["parent"],
-          ["sibling", "index"],
-        ],
-        "alphabetize": { order: "asc", caseInsensitive: true },
-        "newlines-between": "never",
-      },
-    ],
     // ---------------------------------------------------------------------- //
     // Stylistic Rules                                                        //
     // ---------------------------------------------------------------------- //
